@@ -1,14 +1,14 @@
 
 class Solution {
     public int solution(int n, int m, int[] section) {
+        int answer = 0;
         int roller = section[0];
-        int cnt = 1;
-        for(int i = 1; i < section.length; i++) {
-            if(roller + m - 1 < section[i]) {
-                cnt++;
-                roller = section[i];
-            }
+        for(int i = 1 ; i < section.length ; i++){
+            if(roller+m-1 < section[i]){
+                roller = section [i];
+                answer++;
+            }          
         }
-        return cnt;
+        return answer+1;
     }
 }
