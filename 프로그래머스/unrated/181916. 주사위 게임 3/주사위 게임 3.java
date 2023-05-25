@@ -13,10 +13,7 @@ class Solution {
             if(count ==1 ) isOneOneTwo = true;
         }
         
-        if (maxCount == 4) {
-            int score = a * 1111;
-            return score;
-        }
+        if (maxCount == 4)  return a * 1111;
         
         if (maxCount == 3) {
             int p = 0 , q = 0;
@@ -27,8 +24,7 @@ class Solution {
                     q = i;
                 }
             }     
-            int score = (10 * p + q) * (10 * p + q);
-            return score;
+            return (10 * p + q) * (10 * p + q);
         }
         
         if (maxCount == 2 && !isOneOneTwo) {
@@ -46,13 +42,10 @@ class Solution {
                 }
             }
             
-            int score = (p + q) * Math.abs(p - q);
-            
-            return score;
+            return (p + q) * Math.abs(p - q);
             
         }else if(maxCount ==2 && isOneOneTwo){
             int r = 1 ;
-            
             for(int i = 1; i<= 6; i++){
                 if(counts[i]==1){
                     r*=i;
@@ -67,7 +60,6 @@ class Solution {
                 minNum = i;
             }
         }
-        
         return minNum;
     }
 }
