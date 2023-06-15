@@ -2,7 +2,7 @@ class Solution {
     public String solution(String s, String skip, int index) {
         StringBuilder answer = new StringBuilder();
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        int idx;
+        int idx = -1;
         for(int i =0; i<skip.length();i++) {
             alphabet = alphabet.replace(Character.toString(skip.charAt(i)), "");
         }
