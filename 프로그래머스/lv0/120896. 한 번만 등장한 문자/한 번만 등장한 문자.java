@@ -1,21 +1,16 @@
-
-import java.util.*;
 class Solution {
     public String solution(String s) {
-        String answer = "";
-        for(int i = 0; i < s.length() ; i++){
-            int cnt =0 ;
-            for(int j = 0 ; j < s.length() ; j++){
-                if(s.charAt(i)==s.charAt(j)){
-                    cnt++;
-                }
-            }
-            if(cnt==1){
-                answer += s.charAt(i);
-            }
+        int[] alphabet = new int[26];
+        char[] sArr = s.toCharArray();
+        int len1 = sArr.length , len2 = alphabet.length;
+        
+        for(char c: sArr) alphabet[c-'a']++;
+        
+        StringBuilder answer = new StringBuilder();
+        
+        for(int i = 0 ; i< len2 ; i++){
+            if(alphabet[i]==1) answer.append((char)(i+'a'));
         }
-        String[] sort = answer.split("");
-        Arrays.sort(sort);
-        return Arrays.toString(sort).replaceAll("[\\[\\]\\,\\s]","");
+        return answer.toString();
     }
 }
