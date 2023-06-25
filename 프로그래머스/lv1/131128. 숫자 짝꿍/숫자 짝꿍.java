@@ -1,17 +1,25 @@
 class Solution {
     public String solution(String X, String Y) {
+        int[] xInt = new int[10] ,yInt = new int[10];
+        
+        for (char c : X.toCharArray()) xInt[c - '0']++;
+        for (char c : Y.toCharArray()) yInt[c - '0']++;
+        
         StringBuilder answer = new StringBuilder();
-        int[] xArr = new int[10],yArr = new int[10];
-        for(String x : X.split("")) xArr[Integer.parseInt(x)]++;
-        for(String y : Y.split("")) yArr[Integer.parseInt(y)]++;
-        for(int i = 9 ; i>=0 ;i--){
-            while(xArr[i]>0 && yArr[i]>0){
+        
+        for (int i = 9; i >= 0; i--) {
+            int cnt = Math.min(xInt[i], yInt[i]);
+            for (int j = 0; j < cnt; j++) {
                 answer.append(i);
-                xArr[i]--;
-                yArr[i]--;
             }
         }
-        if(answer.toString().equals("")) return "-1";
-        return answer.toString().startsWith("0")?"0":answer.toString();
+        
+        if (answer.length() == 0) return "-1";
+        
+        if (answer.charAt(0) == '0') {
+            return answer.toString().replaceAll("[0]+","0");
+        }
+        
+        return answer.toString();
     }
 }
