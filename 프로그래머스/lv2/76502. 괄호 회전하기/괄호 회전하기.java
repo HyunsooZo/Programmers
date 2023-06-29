@@ -3,11 +3,11 @@ import java.util.*;
 class Solution {
     static int answer=0;
     public int solution(String s) {
-        if(s.length()%2!=0){
-            return 0;
-        }
+        int len = s.length();
+        if(len%2!=0){ return 0; }
+            
         Deque<Character> queue = new LinkedList<>();
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < len; i++) {
             queue.offerLast(s.charAt(i));
         }
         int cnt = 0;
@@ -24,11 +24,11 @@ class Solution {
             if (c == '(' || c == '[' || c == '{') {
                 stack.push(c);
             } else {
-                if (stack.isEmpty()) {
-                    return;
-                }
+                if (stack.isEmpty()) {return;}
                 char top = stack.peek();
-                if ((top == '(' && c == ')') || (top == '[' && c == ']') || (top == '{' && c == '}')) {
+                if ((top == '(' && c == ')') || 
+                    (top == '[' && c == ']') || 
+                    (top == '{' && c == '}')) {
                     stack.pop();
                 } else {
                     return;
