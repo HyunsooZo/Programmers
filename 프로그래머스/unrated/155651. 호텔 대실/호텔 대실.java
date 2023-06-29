@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Reservation {
+class Reservation implements Comparable<Reservation>{
     int startTime;
     int endTime;
 
@@ -15,6 +15,11 @@ class Reservation {
         int minutes = Integer.parseInt(parts[1]);
         return hours * 60 + minutes;
     }
+    
+    @Override
+    public int compareTo(Reservation other){
+        return this.startTime - other.startTime;
+    }
 }
 
 class Solution {
@@ -28,8 +33,7 @@ class Solution {
             reservations.add(temp);
         }
 
-        Collections.sort(reservations, 
-                         Comparator.comparingInt(r -> r.startTime));
+        Collections.sort(reservations);
 
         PriorityQueue<Integer> endTimeQueue = new PriorityQueue<>();
         for (Reservation reservation : reservations) {
