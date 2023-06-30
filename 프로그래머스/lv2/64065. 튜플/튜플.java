@@ -1,30 +1,44 @@
+import java.util.regex.Pattern;
 import java.util.*;
+
+class Tuple implements Comparable<Tuple>{
+    String[] items;
+    public Tuple(String[] items){
+        this.items = items;
+    }
+    
+    @Override
+    public int compareTo(Tuple other){
+        return this.items.length-other.items.length;
+    }
+}
 
 class Solution {
     public int[] solution(String s) {
-        List<List<Integer>> tuples = new ArrayList<>();
-        String[] sArr = s.substring(2, s.length() - 2).split("\\},\\{");
-        for (String str : sArr) {
-            String[] nums = str.split(",");
-            ArrayList<Integer> tuple = new ArrayList<>();
-            for (String num : nums) {
-                tuple.add(Integer.parseInt(num));
-            }
-            tuples.add(tuple);
+        String[] sArr = s.split(Pattern.quote("},{"));
+        int len = sArr.length;
+        List<Tuple> list = new ArrayList<>();
+        List<Integer> answer = new ArrayList<>(); 
+        int[] result = new int[len];
+        int[] nums = new int[10];
+        for(String str : sArr){
+            list.add( 
+                new Tuple(str.replace("{", "").replace("}", "").split(","))
+                );
         }
-
-        Collections.sort(tuples, (a, b) -> a.size() - b.size());
-        Set<Integer> temp = new HashSet<>();
-        int[] answer = new int[tuples.size()];
-        int index = 0;
-        for (List<Integer> tuple : tuples) {
-            for (int num : tuple) {
-                if (temp.add(num)) {
-                    answer[index++] = num;
+        Collections.sort(list);
+        
+        int idx = 0;
+        for(Tuple t : list){
+            for(int i = 0 ; i < t.items.length ; i++){
+                if(!answer.contains(Integer.parseInt(t.items[i]))){
+                    answer.add(Integer.parseInt(t.items[i]));
                 }
             }
         }
-
-        return answer;
+        for(int i = 0 ; i < list.size() ; i++){
+            result[i] = answer.get(i);
+        }
+        return result;
     }
 }
