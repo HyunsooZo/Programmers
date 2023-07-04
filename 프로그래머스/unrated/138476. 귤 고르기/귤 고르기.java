@@ -10,10 +10,8 @@ class Solution {
             map.put(i,map.getOrDefault(i,0)+1);
         }
         
-        for(int i : map.values()){
-            queue.offer(i);
-        }
-        
+        queue.addAll(map.values());
+                
         while(!queue.isEmpty()){
             
             k-=queue.poll();
