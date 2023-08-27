@@ -51,7 +51,7 @@ class Solution {
             }else if(picks[2]>=1){
                 answer+=list.get(i)[0];
                 picks[2]--;
-            }else{
+            }else {
                 break;
             }
         }
