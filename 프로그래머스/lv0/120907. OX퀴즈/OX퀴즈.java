@@ -16,14 +16,13 @@ class Solution {
             if(isMinus) {
                 left1 *= -1;
             }
-            System.out.println(Arrays.toString(temp));
             if (temp[1].charAt(0) == '+') {
                 cal = left1 + left2;
             } else if (temp[1].charAt(0) == '-') {
                 cal = left1 - left2;
             }
             answer[i] = cal == right ? "O" : "X";
-        }
+        }  
         return answer;
     }
 }
