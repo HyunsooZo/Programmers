@@ -1,10 +1,10 @@
 # [level 0] 저주의 숫자 3 - 120871 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120871#qna) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120871) 
 
 ### 성능 요약
 
-메모리: 66.2 MB, 시간: 1.12 ms
+메모리: 77 MB, 시간: 0.04 ms
 
 ### 구분
 
@@ -12,7 +12,7 @@
 
 ### 채점결과
 
-<br/>정확성: 100.0<br/>합계: 100.0 / 100.0
+정확성: 100.0<br/>합계: 100.0 / 100.0
 
 ### 문제 설명
 

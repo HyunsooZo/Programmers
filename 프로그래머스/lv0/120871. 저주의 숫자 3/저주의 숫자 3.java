@@ -1,23 +1,27 @@
-import java.util.*;
 class Solution {
     public int solution(int n) {
-        int multiple3Cnt = 0;
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i = 1 ; i<=100 ; i++) {
-            if(i%3==0||String.valueOf(i).contains("3")){
-              multiple3Cnt++;  
-            } 
+        int count = 0;
+        int num = 1;
+
+        while (true) {
+            if (count == n) {
+                return num - 1;
+            }
+
+            if (num % 3 != 0 && !containsDigit(num, 3)) {
+                count++;
+            }
+            num++;
         }
-        int i = 1;
-        while(list.size()<=100) {
-            if(i%3!=0&&!String.valueOf(i).contains("3")){
-              list.add(i);  
-            } 
-            i++;
+    }
+
+    private boolean containsDigit(int num, int digit) {
+        while (num > 0) {
+            if (num % 10 == digit) {
+                return true;
+            }
+            num /= 10;
         }
-        System.out.println(list.toString());
-        System.out.println(list.size());
-        System.out.println(multiple3Cnt);
-        return list.get(n-1);
+        return false;
     }
 }
