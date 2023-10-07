@@ -1,25 +1,21 @@
 import java.util.*;
+
 public class Solution {
-    public int[] solution(int []arr) {
-        Queue<Integer> q = new LinkedList<>();
-        Queue<Integer> temp = new LinkedList<>();
-        for(int i : arr){
-            q.offer(i);
-        }
-        while(!q.isEmpty()){
-            int pol = q.poll();
-            if(q.isEmpty()){
-                temp.offer(pol);
-            }else if(pol!=q.peek()){
-                temp.offer(pol);
+    public int[] solution(int[] arr) {
+        Deque<Integer> dq = new LinkedList<>();
+        
+        for (int num : arr) {
+            if (dq.isEmpty() || dq.peekLast() != num) {
+                dq.addLast(num);
             }
         }
-        int[] answer = new int[temp.size()];
-        int i = 0;
-        while(!temp.isEmpty()){
-            answer[i] = temp.poll();
-            i++;
+        
+        int[] answer = new int[dq.size()];
+        int idx = 0;
+        while(!dq.isEmpty()){
+            answer[idx++] = dq.poll();
         }
+        
         return answer;
     }
 }
