@@ -1,11 +1,11 @@
 class Solution {
     public String solution(String s) {
-        String answer = "";
-        if(s.length()%2==0){
-            answer = String.valueOf(s.charAt(s.length()/2-1)) + String.valueOf(s.charAt(s.length()/2));
+        int len = s.length();
+        int target = len/2;
+        if(len%2==0){
+            return s.substring(target-1,target+1);
         }else{
-            answer = String.valueOf(s.charAt(s.length()/2));
+            return s.substring(target,target+1);
         }
-        return answer;
     }
 }
