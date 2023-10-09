@@ -1,16 +1,17 @@
+import java.util.*;
 class Solution {
     public String solution(String s) {
-        int[] alphabet = new int[26];
-        char[] sArr = s.toCharArray();
-        int len1 = sArr.length , len2 = alphabet.length;
-        
-        for(char c: sArr) alphabet[c-'a']++;
-        
-        StringBuilder answer = new StringBuilder();
-        
-        for(int i = 0 ; i< len2 ; i++){
-            if(alphabet[i]==1) answer.append((char)(i+'a'));
+        StringBuilder sb = new StringBuilder();
+        Map<Character,Integer> map = new HashMap<>();
+        for(char c : s.toCharArray()){
+            map.put(c,map.getOrDefault(c,0)+1);
         }
-        return answer.toString();
+        for(char c : map.keySet()){
+            sb.append(map.get(c)==1?c:"");
+        }
+        
+        char[] chars = sb.toString().toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);    
     }
 }
