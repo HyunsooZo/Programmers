@@ -1,23 +1,22 @@
-import java.util.*;
 class Solution {
     public int[] solution(String myString) {
-        List<Integer> list = new ArrayList<>();
-        int x = 0, cnt = 0 , idx = 0;
-        while(idx<=myString.length()-1){
-            if(myString.charAt(idx++)=='x'){
-                x++;
-                list.add(cnt);
-                cnt = 0;
-            }else{
-                cnt++;
-            }
-            if(idx==myString.length()){
-                list.add(cnt);
+        int len = 1;
+        String[] temp = myString.split("");
+        for(String s : temp){
+            if(s.equals("x")){
+                len++;
             }
         }
-        idx = 0;
-        int[] answer = new int[list.size()];
-        for(int i : list) answer[idx++]=i; 
+        int[] answer = new int[len];
+        int idx = 0;
+        for(String s : temp){
+            if(!s.equals("x")){
+                answer[idx]++;
+            }else{
+                idx++;
+            }
+        }
+        
         return answer;
     }
 }
