@@ -1,30 +1,28 @@
-class Solution {
-    static int len;
-    static int[][] arr;
-    static boolean[] visited;
-    static int answer;
-
+import java.util.*;
+public class Solution {
     public int solution(int k, int[][] dungeons) {
-        arr = dungeons;
-        len = dungeons.length;
-        visited = new boolean[len];
+        int len = dungeons.length;
         
-        recursive(0, k);
-        
-        return answer;
-    }
-
-    private void recursive(int idx, int k) {
-        for (int i = 0; i < len; i++) {
-            if (visited[i] || arr[i][0] > k) {
-                continue;
+        Arrays.sort(dungeons, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                return (a[0] - a[1]) - (b[0] - b[1]);
             }
-            
-            visited[i] = true;
-            recursive(idx + 1, k - arr[i][1]);
-            visited[i] = false;
-            
+        });
+
+        int[][] dp = new int[len + 1][k + 1];
+
+        for (int i = 1; i <= len; i++) {
+            for (int r = 1; r <= k; r++) {
+                if (dungeons[i - 1][0] > r) {
+                    dp[i][r] = dp[i - 1][r];
+                } else {
+                    dp[i][r] = Math.max(
+                        dp[i - 1][r], 1 + dp[i - 1][r - dungeons[i - 1][1]]
+                    );
+                }
+            }
         }
-        answer = Math.max(idx, answer);
+        return dp[len][k];
     }
 }
