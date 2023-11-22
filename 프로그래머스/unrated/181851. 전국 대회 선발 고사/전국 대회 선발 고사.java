@@ -1,17 +1,35 @@
 import java.util.*;
+class Student implements Comparable<Student>{
+    int seq;
+    int name;
+    
+    public Student(int seq, int name){
+        this.seq = seq;
+        this.name = name;
+    }
+    
+    @Override
+    public int compareTo(Student other){
+        return this.name-other.name;
+    }
+}
 class Solution {
     public int solution(int[] rank, boolean[] attendance) {
-        List<int[]> list = new ArrayList<>();
+        List<Student> list = new ArrayList<>();
+        int answer = 0;
+        for(int i = 0 ; i < rank.length ; i++){
+            if(attendance[i]){
+                list.add(new Student(i,rank[i]));
+            }
+        }
+        Collections.sort(list);
         
-        int len = rank.length;
+        System.out.println(list.get(0).seq);
+        System.out.println(list.get(1).seq);
+        System.out.println(list.get(2).seq);
         
-        for (int i = 0; i < len; i++) 
-            if (attendance[i]) list.add(new int[]{rank[i], i});
-        
-        Collections.sort(list, Comparator.comparingInt(arr -> arr[0]));
-        
-        return list.get(0)[1] * 10000 
-                + list.get(1)[1] * 100 
-                + list.get(2)[1];
+        return list.get(0).seq *10000 + 
+            list.get(1).seq*100 + 
+            list.get(2).seq;
     }
 }
