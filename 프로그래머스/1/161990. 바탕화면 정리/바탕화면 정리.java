@@ -1,19 +1,21 @@
-import java.util.*;
 class Solution {
     public int[] solution(String[] wallpaper) {
-        int x1 = 51, y1 = 51, x2 = -1 , y2 = -1;
-        for(int i = 0 ; i < wallpaper.length ; i++){
-            char[] arr = wallpaper[i].toCharArray();
-            for(int j = 0 ; j < arr.length; j++){
-                if(arr[j]=='#'){
-                    x1 = Math.min(x1,i);
-                    y1 = Math.min(y1,j);
-                    x2 = Math.max(x2,i);
-                    y2 = Math.max(y2,j);
-                }   
+        int L = wallpaper.length;
+        int LL = wallpaper[0].length();
+        int xMax = -1;
+        int yMax = -1;
+        int xMin = 51;
+        int yMin = 51;
+        for(int i = 0 ; i < L ; i++){
+            for(int j = 0 ; j < LL ; j++){
+                if(wallpaper[i].charAt(j)=='#'){
+                    xMax = Math.max(xMax,i);
+                    yMax = Math.max(yMax,j);
+                    xMin = Math.min(xMin,i);
+                    yMin = Math.min(yMin,j);
+                }
             }
         }
-        
-        return new int[]{x1,y1,x2+1,y2+1};
+        return new int[]{xMin,yMin,xMax+1,yMax+1};
     }
 }
