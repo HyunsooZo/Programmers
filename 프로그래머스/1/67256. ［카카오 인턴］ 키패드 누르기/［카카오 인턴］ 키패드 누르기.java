@@ -10,16 +10,10 @@ class Solution {
     static Map<String,int[]> nums = new HashMap<>();
     static boolean leftHanded;
     
-    static
     public String solution(int[] numbers, String hand) {
         
-        String[][] keypad = new String[][]{
-            {"1","2","3"},
-            {"4","5","6"},
-            {"7","8","9"},
-            {"*","0","#"}
-        };
-        
+        leftHanded = hand.equals("left");
+
         cur.put("L",new int[]{3,0});
         cur.put("R",new int[]{3,2});
         
@@ -36,18 +30,24 @@ class Solution {
         nums.put("0",new int[]{3,1});
         nums.put("#",new int[]{3,2});
         
-        leftHanded = hand.equals("left");
-        
         StringBuilder sb = new StringBuilder();
         
         for(int i = 0 ; i < numbers.length ; i++){
             String target = String.valueOf(numbers[i]);
-            if(target.equals("1") || target.equals("4") || target.equals("7")){
+            if(target.equals("1") || 
+               target.equals("4") || 
+               target.equals("7")){
+                
                 sb.append("L");
                 cur.put("L",nums.get(target));
-            }else if(target.equals("3")|| target.equals("6") || target.equals("9")){
+
+            }else if(target.equals("3")|| 
+                     target.equals("6") || 
+                     target.equals("9")){
+            
                 sb.append("R");
                 cur.put("R",nums.get(target));
+                
             }else{
                 String nextHand = distance("L","R",target);
                 cur.put(nextHand,nums.get(target));
@@ -67,13 +67,16 @@ class Solution {
         int[] targetArr = nums.get(target);
         
         int temp1 = 
-            Math.abs(targetArr[0]-aArr[0])+Math.abs(targetArr[1]-aArr[1]);
+            Math.abs(targetArr[0]-aArr[0]) + 
+            Math.abs(targetArr[1]-aArr[1]);
+        
         int temp2 = 
-            Math.abs(targetArr[0]-bArr[0])+Math.abs(targetArr[1]-bArr[1]);
+            Math.abs(targetArr[0]-bArr[0]) + 
+            Math.abs(targetArr[1]-bArr[1]);
         
         if(temp1 == temp2){
-            return leftHanded ? "L" : "R" ;
+            return leftHanded ? "L" : "R";
         }
-        return temp1 > temp2 ? "R" : "L" ;
+        return temp1 > temp2 ? "R" : "L";
     }
 }
