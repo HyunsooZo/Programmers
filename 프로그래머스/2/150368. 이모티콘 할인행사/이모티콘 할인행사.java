@@ -6,7 +6,7 @@ class Solution {
     // 최대 판매 금액
     static int maxOfCost;
 
-    
+
     public int[] solution(int[][] users, int[] emoticons) {
         // 이모티콘 수
         int emoticonLength = emoticons.length;
