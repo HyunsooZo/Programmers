@@ -1,4 +1,5 @@
 import java.util.*;
+
 class Solution {
     
     static boolean[][] visited;
@@ -9,11 +10,10 @@ class Solution {
         visited = new boolean[maps.length][maps[0].length()];
         map = new int[maps.length][maps[0].length()];
         
-        //지도 만들기 
         for(int i = 0 ; i < maps.length ; i++){
             String[] part = maps[i].split("");
             for(int j = 0 ; j < part.length ; j++){
-                map[i][j] = part[j].equals("X")?-99:Integer.parseInt(part[j]);
+                map[i][j] = part[j].equals("X")?0:Integer.parseInt(part[j]);
             }
         }
         
@@ -46,7 +46,7 @@ class Solution {
         if (x < 0 || y < 0 || 
             x >= map.length || 
             y >= map[0].length||
-            map[x][y]==-99 || visited[x][y]) {
+            map[x][y]==0 || visited[x][y]) {
             return 0;
         }
 
@@ -54,13 +54,11 @@ class Solution {
         visited[x][y] = true; 
         int sum = current;
 
-        // 우측, 아래쪽으로 이동하여 유효한 범위의 합을 찾음
-        sum += checkAndSum(x + 1, y);
-        sum += checkAndSum(x - 1, y);
-        sum += checkAndSum(x, y + 1);
-        sum += checkAndSum(x, y - 1);
+        sum += checkAndSum(x + 1, y)+
+            checkAndSum(x - 1, y)+
+            checkAndSum(x, y + 1)+
+            checkAndSum(x, y - 1);
 
         return sum;
     }
-
 }
