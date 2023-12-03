@@ -12,13 +12,9 @@ class Solution {
             dfs(cards, i, 0);
         }
 
-        if (list.size() == 1) {
-            return 0;
-        }
-
         Collections.sort(list, Collections.reverseOrder());
 
-        return list.get(0) * list.get(1);
+        return list.size()==1 ? 0 : list.get(0) * list.get(1);
     }
 
     private void dfs(int[] cards, int idx, int cnt) {
