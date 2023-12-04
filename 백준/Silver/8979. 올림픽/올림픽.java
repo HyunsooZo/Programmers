@@ -1,10 +1,11 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Main {
-
     public static class Country implements Comparable<Country> {
         int name;
         int gold;
@@ -20,29 +21,24 @@ public class Main {
 
         @Override
         public int compareTo(Country other) {
-            if (this.gold == other.gold && this.silver != other.silver) {
-                return this.silver - other.silver;
-            } else if (this.gold == other.gold &&
-                    this.silver == other.silver &&
-                    this.bronze != other.bronze) {
-                return this.bronze - other.bronze;
-            } else if (this.gold == other.gold &&
-                    this.silver == other.silver &&
-                    this.bronze == other.bronze) {
-                return 0;
+            if (this.gold == other.gold) {
+                if (this.silver == other.silver) {
+                    return other.bronze - this.bronze;
+                } else {
+                    return other.silver - this.silver;
+                }
             } else {
-                return this.gold - other.gold;
-
+                return other.gold - this.gold;
             }
         }
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         String[] len = br.readLine().split(" ");
         int n = Integer.parseInt(len[0]);
         int target = Integer.parseInt(len[1]);
+        Country targetCountry = null;
 
         List<Country> list = new ArrayList<>();
 
@@ -54,17 +50,22 @@ public class Main {
                             Integer.parseInt(temp[2]),
                             Integer.parseInt(temp[3]));
             list.add(country);
+            if (temp[0].equals(String.valueOf(target))) {
+                targetCountry = new Country(-1,
+                        Integer.parseInt(temp[1]),
+                        Integer.parseInt(temp[2]),
+                        Integer.parseInt(temp[3]));
+
+            }
         }
         Collections.sort(list);
 
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).name == target) {
-                for (int j = 0; j < list.size(); j++) {
-                    if (list.get(j).compareTo(list.get(i)) == 0) {
-                        System.out.println(j + 1);
-                        break;
-                    }
-                }
+            if (list.get(i).gold == targetCountry.gold &&
+                    list.get(i).silver == targetCountry.silver &&
+                    list.get(i).bronze == targetCountry.bronze) {
+                System.out.println(i + 1);
+                break;
             }
         }
     }
