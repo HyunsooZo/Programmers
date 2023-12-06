@@ -23,17 +23,21 @@ public class Main {
     }
 
     private static void solve(int[] arr, int left, int right) {
+        // left -> 0 , right -> 배열 내 최댓값
+        // 예산 = mid -> 그 중간
         while (left <= right) {
             int mid = (left + right) / 2;
             int sum = 0;
+
             for (int i = 0; i < arr.length; i++) {
                 sum += Math.min(arr[i], mid);
             }
+
             if (sum <= budget) {
                 answer = Math.max(mid,answer);
-                left++;
+                left = mid+1;
             } else {
-                right--;
+                right = mid-1;
             }
         }
     }
