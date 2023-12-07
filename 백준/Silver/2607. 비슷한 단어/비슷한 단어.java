@@ -49,7 +49,7 @@ public class Main {
             }
         }
 
-        bw.write(answer + "");
+        bw.write(answer+ "");
 
         bw.flush();
     }
