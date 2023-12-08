@@ -6,7 +6,9 @@ class Solution {
 
         for (int i = 0; i < number.length(); i++) {
             char c = number.charAt(i);
-            // 스택이 비어있지 않고, 스택의 가장 위의 문자가 현재 문자보다 작고, 아직 삭제해야 할 숫자가 남아있는 경우
+            // 스택이 비어있지 않고, 
+            // 스택의 가장 위의 문자가 현재 문자보다 작고 
+            // 아직 삭제해야 할 숫자가 남은경우
             while (!stack.isEmpty() && stack.peek() < c && k > 0) {
                 stack.pop(); // 스택에서 가장 위의 문자를 제거
                 k--; // 삭제한 숫자 개수 감소
