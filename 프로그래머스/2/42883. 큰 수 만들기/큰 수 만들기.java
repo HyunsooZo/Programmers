@@ -26,6 +26,6 @@ class Solution {
             sb.insert(0, stack.pop());
         }
 
-        return sb.toString(); // 결과 문자열 반환
+        return sb.toString(); 
     }
 }
