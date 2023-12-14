@@ -1,17 +1,17 @@
 import java.util.*;
 class Solution {
     public int[] solution(String s) {
-        int[] map = new int[100001];
+        Map<String,Integer> map = new HashMap<>();
         String[] arr = s.substring(2,s.length()-2).split("\\}\\,\\{");
         for(String str : arr){
             String[] temp = str.split(",");
             for(String t : temp){
-                map[Integer.parseInt(t)]++;
+                map.put(t,map.getOrDefault(t,0)+1);
             }
         }
         
         int max = 1;
-        for(int i : map){
+        for(int i : map.values()){
             if(i>max){
                 max = i;
             }
@@ -20,10 +20,11 @@ class Solution {
         int[] answer = new int[arr.length];
         
         while(true){
-            for(int i = 0 ; i < 100001 ; i++){
-                if(answerIdx < arr.length && map[i]==max){
-                    answer[answerIdx++] = i;
+            for(String k : map.keySet()){
+                if(answerIdx < arr.length && map.get(k)==max){
+                    answer[answerIdx++] = Integer.parseInt(k);
                     max--;
+                    break;
                 }
             }
             if(max<1){
