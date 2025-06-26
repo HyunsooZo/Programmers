@@ -1,6 +1,6 @@
 # [level 1] 폰켓몬 - 1845 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1845?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1845) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 06월 26일 21:40:41
+2025년 06월 26일 21:41:35
 
 ### 문제 설명
 
