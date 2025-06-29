@@ -1,40 +1,22 @@
 import java.util.*;
+
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        List<Integer> list = new ArrayList<>();
+        var result = new ArrayList<Integer>();
+        int current = (100 - progresses[0] + speeds[0] - 1) / speeds[0];
+        result.add(1); 
 
-        int len = progresses.length;
-        
-        int seq = 0;
-        
-        boolean[] visited = new boolean[len];
-        
-        while(true){
-            int cnt = 0;
-            for(int i = 0 ; i < len ; i++){
-                progresses[i]+= speeds[i];
-            }
-            
-            for(int i = 0 ; i < len ; i++){
-                if(i==seq && !visited[i] && progresses[i]>=100){
-                    cnt++;
-                    seq++;
-                    visited[i] = true;
-                }
-            }
-            
-            if(cnt>0){
-                list.add(cnt);
-            }
-            if(seq >= len){
-                break;
+        for (int i = 1; i < progresses.length; i++) {
+            int remaining = (100 - progresses[i] + speeds[i] - 1) / speeds[i];
+            if (remaining <= current) {
+                int lastIdx = result.size() - 1;
+                result.set(lastIdx, result.get(lastIdx) + 1);
+            } else {
+                current = remaining;
+                result.add(1);
             }
         }
-        
-        int[] answer = new int[list.size()];
-        for(int i = 0 ; i < list.size() ; i++){
-            answer[i] = list.get(i);
-        }
-        return answer;
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 }
