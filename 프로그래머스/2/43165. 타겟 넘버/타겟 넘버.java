@@ -1,21 +1,13 @@
 class Solution {
-    static int target;
-    static int count;
-
     public int solution(int[] numbers, int target) {
-        this.target = target;
-        calculate(numbers, 0, 0);
-        return count;
+        return dfs(numbers, 0, 0, target);
     }
 
-    private void calculate(int[] arr, int index, int sum) {
+    private int dfs(int[] arr, int index, int sum, int target) {
         if (index == arr.length) {
-            if (sum == target) {
-                count++;
-            }
-            return;
+            return sum == target ? 1 : 0;
         }
-        calculate(arr, index + 1, sum + arr[index]);
-        calculate(arr, index + 1, sum - arr[index]);
+        return dfs(arr, index + 1, sum + arr[index], target) + 
+               dfs(arr, index + 1, sum - arr[index], target);
     }
 }
